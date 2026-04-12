@@ -1,27 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Products</title>
-  <style>
-    #container {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .card {
-      border: 1px solid #ccc;
-      padding: 10px;
-      width: 200px;
-    }
-    img {
-      width: 100px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premier League Team Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="page-shell">
+    <header class="hero">
+      <nav class="topbar">
+        <div>
+          <p class="eyebrow">College Capstone Project</p>
+          <h1>Premier League Team Explorer</h1>
+        </div>
+        <button id="open-key-panel" class="secondary-button" type="button">API Key</button>
+      </nav>
 
-  <h1>Football Explorer App</h1>
-  <div id="container"></div>
+      <div class="hero-grid">
+        <section class="hero-copy">
+          <p class="hero-tag">Built with API-Football</p>
+          <p class="hero-text">
+            Explore Premier League clubs from the 2023 season with live team data,
+            stadium details, search tools, and interactive team insights.
+          </p>
+          <div class="hero-actions">
+            <button id="load-data" class="primary-button" type="button">Load Teams</button>
+            <a class="ghost-link" href="#teams-section">Jump to Teams</a>
+          </div>
+        </section>
+
+        <aside class="key-panel" id="key-panel">
+          <h2>Connect Your API</h2>
+          <p>
+            Paste your API-Football key once. It is stored only in your browser using
+            local storage, so you can demo the project without exposing the key in code.
+          </p>
+
+          <form id="api-form" class="api-form">
+            <label for="api-key">API Key</label>
+            <input
+              id="api-key"
+              name="apiKey"
+              type="password"
+              placeholder="Enter your x-apisports-key"
+              autocomplete="off"
+            >
+            <div class="form-actions">
+              <button class="primary-button" type="submit">Save Key</button>
+              <button id="clear-key" class="secondary-button" type="button">Clear</button>
+            </div>
+          </form>
+
+          <p id="key-status" class="status-text">No API key saved yet.</p>
+        </aside>
+      </div>
+    </header>
+
+    <main>
+      <section class="stats-grid" aria-label="Project statistics">
+        <article class="stat-card">
+          <p>Total Teams</p>
+          <h3 id="total-teams">0</h3>
+        </article>
+        <article class="stat-card">
+          <p>Countries</p>
+          <h3 id="total-countries">0</h3>
+        </article>
+        <article class="stat-card">
+          <p>Oldest Founded Club</p>
+          <h3 id="oldest-club">-</h3>
+        </article>
+        <article class="stat-card">
+          <p>Largest Stadium</p>
+          <h3 id="largest-stadium">-</h3>
+        </article>
+      </section>
+
+      <section class="controls-section" id="teams-section">
+        <div class="section-heading">
+          <p class="eyebrow">Interactive Dashboard</p>
+          <h2>Search, filter, and compare teams</h2>
+        </div>
+
+        <div class="controls-grid">
+          <label>
+            Search
+            <input id="search-input" type="search" placeholder="Search by team, country, or city">
+          </label>
+
+          <label>
+            Country
+            <select id="country-filter">
+              <option value="all">All Countries</option>
+            </select>
+          </label>
+
+          <label>
+            Sort By
+            <select id="sort-filter">
+              <option value="name-asc">Name: A to Z</option>
+              <option value="name-desc">Name: Z to A</option>
+              <option value="founded-asc">Founded: Oldest First</option>
+              <option value="capacity-desc">Capacity: Highest First</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="feedback-panel">
+        <p id="loading" class="info-message" hidden>Loading team data...</p>
+        <p id="error-message" class="error-message" hidden></p>
+        <p id="empty-state" class="info-message" hidden>No teams match your current filters.</p>
+      </section>
+
+      <section id="teams-container" class="teams-grid" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <div id="team-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button id="close-modal" class="close-button" type="button" aria-label="Close details">x</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

@@ -1,51 +1,46 @@
-# ⚽ Football Explorer App
+# Premier League Team Explorer
 
-## 📌 Description
+Premier League Team Explorer is a frontend capstone project built with HTML, CSS, and JavaScript using the API-Football endpoint:
 
-The Football Explorer App is a web application that allows users to explore football clubs and players using a public API. Users can search, filter, and sort data dynamically.
+`https://v3.football.api-sports.io/teams?league=39&season=2023`
 
-## 🎯 Purpose
+## Features
 
-This project demonstrates:
+- Live Premier League team data from API-Football
+- API key input stored safely in browser local storage
+- Search teams by name, country, or city
+- Filter teams by country
+- Sort teams by name, founded year, or stadium capacity
+- Dashboard cards showing total teams, countries, oldest club, and largest stadium
+- Team detail modal with stadium and club information
+- Responsive design for desktop and mobile screens
 
-* JavaScript fundamentals
-* API integration using fetch
-* Use of array higher-order functions
-* Responsive UI design
+## Technologies Used
 
-## 🔗 API Used
+- HTML5
+- CSS3
+- JavaScript
+- API-Football by API-Sports
 
-* API-Football (https://www.api-football.com/)
+## How to Run
 
-## ✨ Features (Planned)
+1. Open `index.html` in a browser.
+2. Click `API Key`.
+3. Paste your API-Football key.
+4. Click `Save Key`.
+5. Click `Load Teams`.
 
-* 🔍 Search players and clubs
-* 🎯 Filter by league, country, and position
-* 🔃 Sort by name, age, and team
-* ⭐ Favorite players/clubs
-* 🌙 Dark mode toggle
+## Project Idea
 
-## 🛠️ Technologies Used
+This project is designed as a college capstone dashboard that demonstrates:
 
-* HTML
-* CSS (or Tailwind/Bootstrap)
-* JavaScript (ES6+)
-* Fetch API
+- API integration
+- DOM manipulation
+- local storage usage
+- filtering and sorting logic
+- responsive UI design
+- error and loading state handling
 
-## 📂 Setup
+## Important Note
 
-1. Clone the repo
-2. Open index.html in browser
-3. Add your API key
-
-## 📱 Responsiveness
-
-* Mobile
-* Tablet
-* Desktop
-
-## 🚀 Future Enhancements
-
-* Pagination
-* Debouncing
-* Local storage for favorites
+Do not hardcode your real API key in public code submissions. This project stores the key only in the browser for safer demos.
